@@ -21,7 +21,27 @@ def enviar_config(nome_sessao: str, diretorio_wrk: str, diretorio_prd: str):
     # Retorna a resposta do servidor
     return response
 
-def processar_csv(caminho_csv: str):
+
+def novo_fonte(wNomeFonte: str, wSufixo: str, wSistema: str):
+
+    URL = "http://10.1.6.130/mtfontes-cgi/NovoFonte.cgi"
+
+    fields = {
+        "Chave": (None, "5kOq1ahxey0c2.K"),
+        "wNomeFonte": (None, wNomeFonte),
+        "wSufixo": (None, wSufixo),
+        "wSistema": (None, wSistema),
+        "wDesc1Fonte": (None, wNomeFonte),
+        "wDesc2Fonte": (None, ""),   # vazio
+        "Atualiza": (None, "Processa"),
+    }
+
+    resp = requests.post(URL, files=fields, timeout=30)
+    print("Status:", resp.status_code)
+    print("Resposta:", resp.text[:500], "...\n")  # preview da resposta
+
+
+def processar_csv_sistemas(caminho_csv: str):
     with open(caminho_csv, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=';')  # ajuste se for vírgula
         for row in reader:
@@ -35,7 +55,25 @@ def processar_csv(caminho_csv: str):
             print(f"Status: {resp.status_code}")
             print(f"Resposta: {resp.text[:500]}...")  # imprime só os primeiros 500 chars
 
+def processar_csv_fontes(caminho_csv: str):
+    """
+    Lê o CSV e envia cada linha para o servidor.
+    CSV esperado: wNomeFonte;wSufixo;wSistema
+    """
+    with open(caminho_csv, newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=';')
+        for row in reader:
+            wNomeFonte = row["wNomeFonte"]
+            wSufixo = row["wSufixo"]
+            wSistema = row["wSistema"]
+
+            try:
+                novo_fonte(wNomeFonte, wSufixo, wSistema)
+            except Exception as e:
+                print(f"Erro ao enviar {wNomeFonte}: {e}")            
+
 
 # Exemplo de uso
 if __name__ == "__main__":
-    processar_csv("sistemas_hcm.csv")
+    processar_csv_sistemas("sistemas_hcm.csv")
+    processar_csv_fontes("fontes_hcm.csv")
