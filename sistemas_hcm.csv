@@ -1,0 +1,9 @@
+nome_sessao;fld_diretoriowrk_0;fld_diretorioprd_0
+HCM_etp;/desenv/hcm/etp;/fontes/hcm/etp
+HCM_espec-update_espec_syspro;/desenv/hcm/espec-update/espec_syspro;/fontes/hcm/espec-update/espec_syspro
+HCM_espec-update_etp;/desenv/hcm/espec-update/etp;/fontes/hcm/espec-update/etp
+HCM_espec-update_etupc;/desenv/hcm/espec-update/etupc;/fontes/hcm/espec-update/etupc
+HCM_espec-update_fp4510;/desenv/hcm/espec-update/fp4510;/fontes/hcm/espec-update/fp4510
+HCM_espec-update_msg;/desenv/hcm/espec-update/msg;/fontes/hcm/espec-update/msg
+HCM_espec-update_portal_syspro;/desenv/hcm/espec-update/portal_syspro;/fontes/hcm/espec-update/portal_syspro
+HCM_espec-update_prghur;/desenv/hcm/espec-update/prghur;/fontes/hcm/espec-update/prghur
