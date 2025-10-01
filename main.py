@@ -27,7 +27,7 @@ def novo_fonte(wNomeFonte: str, wSufixo: str, wSistema: str):
     URL = "http://10.1.6.130/mtfontes-cgi/NovoFonte.cgi"
 
     fields = {
-        "Chave": (None, "5kOq1ahxey0c2.K"),
+        "Chave": (None, "VMpbD9_carMOk.K"),
         "wNomeFonte": (None, wNomeFonte),
         "wSufixo": (None, wSufixo),
         "wSistema": (None, wSistema),
@@ -75,5 +75,5 @@ def processar_csv_fontes(caminho_csv: str):
 
 # Exemplo de uso
 if __name__ == "__main__":
-    processar_csv_sistemas("sistemas_hcm.csv")
+    # processar_csv_sistemas("sistemas_hcm.csv")
     processar_csv_fontes("fontes_hcm.csv")
